@@ -11,8 +11,8 @@ class MainScene extends Phaser.Scene {
         this.load.image('sky','assets/background.png')
         this.load.image('taro','assets/taro.png')
         this.load.image('hanako','assets/hanako.png')
-        this.load.image('apple','assets/apple.png')
-        this.load.image('orange','assets/orange.png')
+        this.load.image('apple','assets/apple2.png')
+        this.load.image('orange','assets/orange2.png')
     }
     // シーン初期化処理
     create() {
@@ -23,8 +23,8 @@ class MainScene extends Phaser.Scene {
 
         for (var i=0; i<5; i++){
             let appleX = Phaser.Math.Between(50,750);
-            let orangeX = Phaser.Math.Between(50,750);
             let appleY = Phaser.Math.Between(50,200);
+            let orangeX = Phaser.Math.Between(50,750);
             let orangeY = Phaser.Math.Between(50,200);
             const apple = this.physics.add.sprite(appleX,appleY,'apple');
             const orange= this.physics.add.sprite(orangeX,orangeY,'orange');
