@@ -20,19 +20,38 @@ class MainScene extends Phaser.Scene {
 
         const taro = this.physics.add.sprite(50,50,'taro');
         const hanako = this.physics.add.sprite(750,400,'hanako');
+        this.taro = taro;
+        this.hanako = hanako;
+        let staticGroup = this.physics.add.staticGroup();
 
         for (var i=0; i<5; i++){
             let appleX = Phaser.Math.Between(50,750);
             let appleY = Phaser.Math.Between(50,200);
             let orangeX = Phaser.Math.Between(50,750);
             let orangeY = Phaser.Math.Between(50,200);
-            const apple = this.physics.add.sprite(appleX,appleY,'apple');
-            const orange= this.physics.add.sprite(orangeX,orangeY,'orange');
-            this.apple = apple 
-            this.orange = orange
+
+            staticGroup.create(appleX,appleY,'apple');
+            staticGroup.create(orangeX,orangeY,'orange');
         } 
-        this.taro = taro 
-        this.hanako = hanako 
+        let playerGroup = this.physics.add.group();
+        playerGroup.create(taro);
+        playerGroup.create(hanako);
+
+        // this.physics.add.collider(taro,   staticGroup);
+        // this.physics.add.collider(hanako, staticGroup);
+
+        this.physics.add.overlap(taro, staticGroup, collectFruits, null, this);
+        function collectFruits(){
+            this.physics.pause(this.add.text(D_WIDTH/3,D_HEIGHT*1/3, 'Game Over!', { fontSize: '32px', fill: '#CDC' }));
+            // this.physics.pause();
+            // this.add.text(500,500,'Game Over');
+        }
+        this.physics.add.overlap(hanako, staticGroup, collectFruits, null, this);
+        function collectFruits(){
+            this.physics.pause(this.add.text(D_WIDTH/3,D_HEIGHT*1/3, 'Game Over!', { fontSize: '32px', fill: '#CDC' }));
+            // this.physics.pause();
+            // this.add.text(500,500,'Game Over');
+        }
     }
     // 毎フレーム実行される繰り返し処理
     update() {
