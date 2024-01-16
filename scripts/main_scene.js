@@ -43,12 +43,12 @@ class MainScene extends Phaser.Scene {
         // this.physics.add.collider(hanako, staticGroup);
 
         //taroの当たり判定  
-        // this.physics.add.overlap(taro, staticGroup, collectFruits, null, this);
-        // function collectFruits(taro,fruits){
-        //     this.physics.pause(this.add.text(D_WIDTH/3,D_HEIGHT*1/3, 'Game Over!', { fontSize: '32px', fill: '#CDC' }));
-        //     // this.physics.pause();
-        //     // this.add.text(500,500,'Game Over');
-        // }
+        this.physics.add.overlap(taro, staticGroup, collectFruits, null, this);
+        function collectFruits(taro,fruits){
+            this.physics.pause(this.add.text(D_WIDTH/3,D_HEIGHT*1/3, 'Game Over!', { fontSize: '32px', fill: '#CDC' }));
+            // this.physics.pause();
+            // this.add.text(500,500,'Game Over');
+        }
         this.physics.add.overlap(hanako, staticGroup, collectFruits2, null, this);
         function collectFruits2(hanako,fruits){
             this.count += 1;
